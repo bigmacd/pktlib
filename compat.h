@@ -63,6 +63,3 @@ typedef long long __int64;
 #endif
 
 #endif
-
-
-#endif

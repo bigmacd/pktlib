@@ -1,3 +1,4 @@
+#ifndef  __SNMPEXCEPTION_H__
 #define __SNMPEXCEPTION_H__
 
 

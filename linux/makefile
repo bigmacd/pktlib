@@ -3,6 +3,7 @@
 
 CC= gcc 
 #CFLAGS = -g -lnsl
+CFLAGS = -fPIC
 INCLUDES = -I. 
 
 CFILES= CounterVarbind.cpp Counter64Varbind.cpp GaugeVarbind.cpp GenericPacket.cpp IntVarbind.cpp IpAddrVarbind.cpp OidVarbind.cpp OpaqueVarbind.cpp Packet.cpp ScalarVarbind.cpp Scalar64Varbind.cpp SnmpException.cpp SnmpParser.cpp StringVarbind.cpp TimeTickVarbind.cpp V1GetNextPdu.cpp V1GetPdu.cpp V1Pdu.cpp V1ResponsePdu.cpp V1SetPdu.cpp V1TrapPdu.cpp V2TrapPdu.cpp V2GetBulkPdu.cpp InformPdu.cpp Varbind.cpp VarbindList.cpp VbPair.cpp V2Notification.cpp Udp.cpp UdpClient.cpp UdpServer.cpp Thread.cpp Poller.cpp

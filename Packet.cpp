@@ -6,7 +6,6 @@
 #include "PktLibVersion.h"
 #endif
 
-#include <winsock.h>
 
 Packet::Packet()
        :mCommunityVb(NULL),

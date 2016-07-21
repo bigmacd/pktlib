@@ -1,3 +1,4 @@
+#ifndef __SNMPEXCEPTION_H__
 #include "SnmpException.h"
 #endif
 

@@ -1,3 +1,4 @@
+#ifndef  __POLLER_H__
 #include "Poller.h"
 #endif
 

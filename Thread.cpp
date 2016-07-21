@@ -1,3 +1,4 @@
+#ifndef __THREAD_H__
 #include "Thread.h"
 #endif
 

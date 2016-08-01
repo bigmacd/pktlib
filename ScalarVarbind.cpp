@@ -10,6 +10,9 @@
 #include "compat.h"
 #endif
 
+#include <iostream>
+using namespace std;
+
 ScalarVarbind::ScalarVarbind(unsigned short type, const char* typeString)
               :Varbind(type, typeString),
 	       mValue(0)
@@ -59,26 +62,22 @@ ScalarVarbind::Printable()
   return mPrintable;
 }
 
-//#include <iostream.h>
 void             
 ScalarVarbind::Build(unsigned char*& pdu)
 {
-  //  cout << "length = " << DataLength() << endl;
-  //  unsigned char* origPdu = pdu;
-
   encodeLength(pdu, DataLength());
+
   int shiftsize = 8 * (DataLength() - 1);
   for (unsigned int i = 0; i < DataLength(); i++, shiftsize -= 8)
   {
     *pdu++ = (unsigned char)((mValue >> shiftsize) & 0x000000ff);
   }
-  //  printf("data in pdu: %02x %02x, %02x %02x\r\n", origPdu[0], origPdu[1], origPdu[2], origPdu[3]);
 }
 
 void 
 ScalarVarbind::Value(unsigned long value)
 {
-  
+
   if (value == 0)
   {
     mValue = value;
@@ -89,7 +88,7 @@ ScalarVarbind::Value(unsigned long value)
     int intsize = sizeof(unsigned long);
     int loopCount = 0;
     
-    unsigned long mask = 0xff800000;// >> ((8 * (sizeof(unsigned int) - 1)) - 1);
+    unsigned long mask = 0xff80000000000000;// >> ((8 * (sizeof(unsigned int) - 1)) - 1);
     unsigned long valueIn = value;
     while((((valueIn & mask) == 0) || ((valueIn & mask) == mask))
 	  && intsize > 1)
@@ -98,8 +97,6 @@ ScalarVarbind::Value(unsigned long value)
       loopCount++;
       valueIn <<= 8;
     }
-    //    for (int x = 0; x < loopCount; x++)
-    //      value >>= 8;
     mValue = value;
     DataLength(intsize);
   }

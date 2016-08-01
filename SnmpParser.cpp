@@ -522,7 +522,8 @@ calculateLengthLength(unsigned int len)
 {
   unsigned int lenLength = 0;
   unsigned int i;
-  for (i = 0; i < (sizeof(long)); i++)
+  for (i = 0; i < (sizeof(unsigned int)); i++)
+    //  for (i = 0; i < (sizeof(long)); i++)
   {
     if (len & (0x000000ff << (i*8)))
       lenLength++;
@@ -530,7 +531,8 @@ calculateLengthLength(unsigned int len)
   if (lenLength > 1) // for the length byte
     lenLength++;
   
-  int ii = sizeof(long);
+  int ii = sizeof(unsigned int);
+  //  int ii = sizeof(long);
   ii--;
   for (; ii >= 0; ii--)
   {

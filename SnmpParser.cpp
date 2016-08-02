@@ -306,15 +306,16 @@ decodeLength(unsigned char* &pduField, long* value)
 
 //#include <iostream.h>
 void
-encodeLength(unsigned char* &pduField, long value)
+encodeLength(unsigned char* &pduField, long inValue)
 {
+  int value = (int)inValue;
   if (value < 127) // 127 is reserved
     *pduField++ = (unsigned char)value;
   else
   {
     unsigned short len = 0;
     unsigned int i;
-    for (i = 0; i < (sizeof(long)); i++)
+    for (i = 0; i < (sizeof(int)); i++)
     {
       if (value & (0x000000ff << (i*8)))
 	//	len++;

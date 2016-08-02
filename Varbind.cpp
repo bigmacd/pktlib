@@ -52,8 +52,10 @@ Varbind::Varbind(unsigned char* &pduPart,
 
 Varbind::~Varbind()
 {
-  if (mPrintable)
-    delete mPrintable;
+  if (mPrintable) { 
+    delete [] mPrintable;
+    mPrintable = NULL;
+  }
 }
 
 unsigned int

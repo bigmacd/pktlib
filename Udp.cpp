@@ -195,8 +195,8 @@ Udp::Send(Packet* p, struct sockaddr* s, int sLen)
   try 
   {
     unsigned long len = p->TotalLength();    
-    unsigned char* t = new unsigned char[len];
-    memset(t, 0, len);
+    unsigned char* t = new unsigned char[len + 100];
+    memset(t, 0, len + 100);
     p->Build(t);
 
 #ifdef _DEBUG

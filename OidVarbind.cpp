@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <iostream>
+using namespace std;
+
 OidVarbind::OidVarbind()
            :Varbind(OID, "OID"),
 	    mData(NULL)
@@ -32,8 +35,14 @@ OidVarbind::OidVarbind(char* string)
 
 OidVarbind::~OidVarbind()
 {
-  if (mData != NULL)
+  if (mData != NULL) { 
     delete [] mData;
+    mData = NULL;
+  }
+  if (mPrintable != NULL) {
+    delete [] mPrintable;
+    mPrintable = NULL;
+  }
 }
 
 const char*
@@ -93,10 +102,14 @@ OidVarbind::Printable()
 void 
 OidVarbind::Value(char* value)
 {
-  if (mData)
+  if (mData)  {
     delete [] mData;
-  if (mPrintable)
+    mData = NULL;
+  }
+  if (mPrintable != NULL) {
     delete [] mPrintable;
+    mPrintable = NULL;
+  }
 
   unsigned int len = 4096;
   // first use a big buffer until encoded

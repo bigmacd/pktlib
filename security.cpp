@@ -1,3 +1,4 @@
+#ifndef __SECURITY_H__
 #include "Security.h"
 #endif
 

@@ -1,3 +1,4 @@
+#ifndef __SECURITY_H__
 #define __SECURITY_H__
 
 #ifdef _BORLAND

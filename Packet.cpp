@@ -1,4 +1,6 @@
-
+#ifndef __PACKET_H__
+#include "Packet.h"
+#endif
 
 #include "vbTypes.h"
 
@@ -6,6 +8,8 @@
 #include "PktLibVersion.h"
 #endif
 
+#include <iostream>
+using namespace std;
 
 Packet::Packet()
        :mCommunityVb(NULL),
@@ -254,7 +258,8 @@ Packet::Length()
 
 
   // how many octets for length?
-  len += calculateTotalLengthLength(pduLen + vbLen);
+  len += calculateTotalLengthLength(len);
+  //len += calculateTotalLengthLength(pduLen + vbLen);
 
   return len;
 }
@@ -560,3 +565,102 @@ Packet::AddV2TrapVarbinds(unsigned long counterValue,
   }
 }
     
+void
+Packet::Print() {
+
+  cout << "Packet built with SNMP Packet Lib Version : " << PktLibVersion() << endl;
+  cout << "This is an SNMP V" << Version() + 1 << (Version() == 1?"(c) ":" ") << "Packet" << endl;
+  cout << "It is configured with the community string '" << Community() << "'" << endl;
+
+  switch (Type())
+  {
+    case V1TRAP:
+    {
+        cout << "This Packet has a V1Trap PDU" << endl;
+        cout << "The Generic Type is " << GenericTrapType() << endl;
+        cout << "The Specific Type is " << SpecificTrapType() << endl;
+        cout << "The Timeticks value is " <<  TimeTicks() << endl;
+        cout << "The Sender's OID is " << SenderOID() << endl;
+        cout << "The Sender's IP is " << SenderIP() << endl;
+        break;
+    }
+    case V2TRAP:
+    {
+        cout << "This Packet has a V2Trap PDU" << endl;
+        cout << "The Request ID is " << RequestId() << endl;
+        cout << "The Error Index is " << ErrorIndex() << endl;
+        cout << "The Error Status is " << ErrorStatus() << endl;
+        break;
+    }
+    case V1GETCOMMAND:
+    {
+        cout << "This Packet has a V1GetCommand PDU" << endl;
+        cout << "The Request ID is " << RequestId() << endl;
+        cout << "The Error Index is " << ErrorIndex() << endl;
+        cout << "The Error Status is " << ErrorStatus() << endl;
+        break;
+    }
+    case V1SETCOMMAND:
+    {
+
+        cout << "This Packet has a V1SetCommand PDU" << endl;
+        cout << "The Request ID is " << RequestId() << endl;
+        cout << "The Error Index is " << ErrorIndex() << endl;
+        cout << "The Error Status is " << ErrorStatus() << endl;
+        break;
+    }
+    case V1GETNEXTCOMMAND:
+    {
+        cout << "This Packet has a V1GetNextCommand PDU" << endl;
+        cout << "The Request ID is " << RequestId() << endl;
+        cout << "The Error Index is " << ErrorIndex() << endl;
+        cout << "The Error Status is " << ErrorStatus() << endl;
+        break;
+    }
+    case V1RESPONSE:
+    {
+        cout << "This Packet has a V1Response PDU" << endl;
+        cout << "The Request ID is " << RequestId() << endl;
+        cout << "The Error Index is " << ErrorIndex() << endl;
+        cout << "The Error Status is " << ErrorStatus() << endl;
+        break;
+    }
+    case INFORMPDU:
+    {
+        cout << "This Packet has a INFORMa PDU" << endl;
+        cout << "The Request ID is " << RequestId() << endl;
+        cout << "The Error Index is " << ErrorIndex() << endl;
+        cout << "The Error Status is " << ErrorStatus() << endl;
+        break;
+    }
+    case GETBULK:
+    {
+        cout << "This Packet has a GetBulk PDU" << endl;
+        cout << "The Request ID is " << RequestId() << endl;
+        cout << "The Error Index is " << ErrorIndex() << endl;
+        cout << "The Error Status is " << ErrorStatus() << endl;
+        break;
+    }
+  }
+
+#if 0
+    unsigned int           Length();
+    virtual unsigned int   TotalLength();
+
+    virtual int            VbListLength();
+    virtual const char*    VbOID(int which);
+    virtual const char*    VbType(int which);
+    virtual const char*    VbData(int which);
+
+    const char*            RealIp();
+    void                   RealIp(struct sockaddr_in* peer);
+
+    VarbindList*   VbList();
+    void           VbList(VarbindList* vblist);
+
+    Pdu*           pdu();
+    void           pdu(Pdu* inPdu);
+
+    Packet*        Next;
+#endif
+}

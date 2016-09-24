@@ -551,7 +551,7 @@ calculateLengthLength(unsigned int len)
 unsigned int
 calculateTotalLengthLength(unsigned int len)
 {
-  if (len < 127) // 127 is reserved
+  if (len <= 127) // 127 is reserved
     return 1;
   else
   {

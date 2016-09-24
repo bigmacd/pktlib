@@ -82,6 +82,7 @@ class Packet : public GenericPacket
 				     int genericType = 1,
 				     bool noSubIds = false );
     
+    void           Print();
 
     // from the pdu interface
     virtual int                RequestId();
